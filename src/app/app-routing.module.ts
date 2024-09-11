@@ -26,10 +26,13 @@ const routes: Routes = [
     path: 'miclase',
     loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
   },
+<<<<<<< HEAD
   {
     path: 'misdatos',
     loadChildren: () => import('./pages/misdatos/misdatos.module').then( m => m.MisdatosPageModule)
   },
+=======
+>>>>>>> aed38e2c58e072aeace7b00de53c025ac08847d9
 
 ];
 
