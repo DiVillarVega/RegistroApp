@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title #titulo class="font-size-18">
+      Sistema de Asistencia DUOC
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="book">
+  <ion-content #page [fullscreen]="true" class="ion-padding-horizontal page">
+    
+    <ion-title class="ion-padding-top">
+      <ion-label class="ion-text-center">
+        <h1> ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!</h1>
+        <br>
+        <h4> Mis Datos personales</h4>
+      </ion-label>
+    </ion-title>
+
+    <ion-item #itemCuenta>
+      <ion-input [(ngModel)]="usuario.cuenta" label="Cuenta" labelPlacement="floating"></ion-input>
+    </ion-item>
+
+    <ion-item #itemNombre>
+      <ion-input [(ngModel)]="usuario.nombre" label="Nombre" labelPlacement="floating"></ion-input>
+    </ion-item>
+
+    <ion-item #itemApellido>
+      <ion-input [(ngModel)]="usuario.apellido" label="Apellido" labelPlacement="floating"></ion-input>
+    </ion-item>
+
+    <ion-item #itemEducacion>
+      <ion-label position="floating"> Educación </ion-label>    
+
+      <ion-select [(ngModel)]="usuario.nivelEducacional!.id">
+        <ion-select-option *ngFor="let nivel of listaNivelesEducacionales" [value]="nivel.id">
+          {{nivel.nombre}}
+        </ion-select-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item #itemFechaNacimiento>
+      <table>
+        <tr>
+          <td class="font-size-12">
+            Nacimiento
+          </td>
+          <td class="cell-align-right">
+            <input 
+              matInput 
+              [matDatepicker]="fechaNacimiento" 
+              [(ngModel)]="usuario.fechaNacimiento" 
+              placeholder="dd/mm/yyyy" 
+              class="date-width">
+          </td>
+          <td class="cell-width-0">
+            <mat-datepicker-toggle matSuffix [for]="fechaNacimiento"></mat-datepicker-toggle>
+            <mat-datepicker #fechaNacimiento></mat-datepicker>
+          </td>
+        </tr>
+      </table>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3>
+          <ion-button shape="round" (click)="limpiar1()" size="small">
+            Limpiar IzDer
+          </ion-button>
+        </ion-col>
+
+        <ion-col col-3>
+          <ion-button shape="round" (click)="limpiar2()" size="small">
+            Limpiar Rotando
+          </ion-button>
+        </ion-col>
+
+        <ion-col col-3>
+          <ion-button shape="round" (click)="createPageTurnAnimation()" size="small">
+            Limpiar Vuelta de hoja
+          </ion-button>
+        </ion-col>
+
+        <ion-col col-3>
+          <ion-button shape="round" (click)="mostrarDatosPersona()" size="small">
+            Ver Mis Datos
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+  </ion-content>
+</div>

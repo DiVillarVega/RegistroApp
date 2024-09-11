@@ -1,0 +1,104 @@
+ion-content{
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  --padding-end: 20px;
+  --padding-start: 20px;
+}
+
+ion-item{
+  --padding-bottom: 10px;
+}
+
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  height: 90vh;           /* Ocupa toda la altura de la pantalla */
+}
+
+.foto-portada {
+  width: 100%;
+}
+
+@media screen and (orientation: landscape) {
+  .center-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    height: 80%;           /* Ocupa toda la altura de la pantalla */
+    width: 80%;
+    text-align: center;
+    margin: auto;
+  }
+
+  .foto-portada {
+    width: 30%;
+  }
+}
+
+.centrar {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+}
+
+.espaciado{
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  --padding-end: 30px;
+  --padding-start: 30px;
+}
+
+.logo-duoc {
+  width: 100%;
+  padding: 20px;
+}
+.azul-duoc{
+  --background: #010e2c;  
+}
+
+.text-with-background {
+  background-color: #fbb32f; /* Color del fondo */
+  color: black;               /* Color del texto */
+  padding: 1px;              /* Espaciado alrededor del texto */
+  border-radius: 20px;        /* Bordes redondeados (opcional) */
+}
+
+.text-with-background2 {
+  background-color: #fbb32f; /* Color del fondo */
+  color: black;  
+}
+
+ion-content{
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  --padding-end: 20px;
+  --padding-start: 20px;
+ 
+}
+
+.content {
+  background-color: white;
+  border: 2px solid #010e2c;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.boton-azul {
+  --border-radius: 10px; /* Cambia el valor para ajustar el redondeo */
+  width: auto; /* Ajusta el ancho del botón */
+  padding: 0 15px; /* Controla el espaciado horizontal */
+}
+
+
+.center-container {
+  
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  height: 90vh; 
+}
