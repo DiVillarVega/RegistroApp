@@ -39,8 +39,10 @@ export class LoginPage implements OnInit {
             usuario: usu
           }
         };
-        this.mostrarMensaje('¡Bienvenido(a)!');
-        this.router.navigate(['/inicio'], navigationExtras); // Navegamos hacia el Inicio y enviamos la información extra
+        setTimeout(() => {
+          this.mostrarMensaje('¡Bienvenido(a)!');
+          this.router.navigate(['/inicio'], navigationExtras); // Navegamos hacia el Inicio y enviamos la información extra
+        }, 300);
       }
     }
   }
