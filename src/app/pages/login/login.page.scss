@@ -1,10 +1,3 @@
-ion-content{
-  --padding-top: 20px;
-  --padding-bottom: 20px;
-  --padding-end: 20px;
-  --padding-start: 20px;
-}
-
 ion-item{
   --padding-bottom: 10px;
 }
@@ -55,8 +48,8 @@ body {
 }
 
 .logo-duoc {
-  width: 100%;
-  padding: 20px;
+  width: 80%;
+  padding: 10px;
 }
 .azul-duoc{
   --background: #010e2c;  
@@ -97,8 +90,8 @@ ion-content{
 
 
 .center-container {
-  
   justify-content: center; /* Centra horizontalmente */
   align-items: center;     /* Centra verticalmente */
   height: 90vh; 
 }
+

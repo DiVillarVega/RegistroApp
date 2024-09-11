@@ -29,8 +29,36 @@ export class PreguntaPage implements OnInit {
   }
 
   ngOnInit() {
+    const paginaCompleta = document.getElementById('pagina-completa');
+  
+    if (paginaCompleta) {
+      paginaCompleta.classList.add('fade-in-up');
+  
+      // Espera un momento para que se vea la animación
+      setTimeout(() => {
+        paginaCompleta.classList.add('show');
+      }, 50); // Da un pequeño retardo para activar la animación
+    }
   }
 
+  //Ir al Login Sin animación
+  // public irAlLogin(): void {
+  //   this.router.navigate(['/login']);
+  // }
+
+  public irAPaginaSiguiente(): void {
+    const paginaCompleta = document.getElementById('pagina-completa');
+  
+    if (paginaCompleta) {
+      // Añade la clase 'fade-out' para desvanecer todo el contenido
+      paginaCompleta.classList.add('fade-out');
+  
+      // Navega a la siguiente página después de que termine la transición
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 800); // Ajusta el tiempo para que coincida con la duración de la animación
+    }
+  }
 
 // PARA FABIÁN !!!
 //Esto muestra los mensajes que deberían mostrar tus páginas en lugar de los alert

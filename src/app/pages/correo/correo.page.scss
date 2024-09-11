@@ -6,8 +6,8 @@
 }
 
 .logo-duoc {
-  width: 100%;
-  padding: 20px;
+  width: 80%;
+  padding: 10px;
 }
 .azul-duoc{
   --background: #010e2c;  
@@ -52,6 +52,50 @@ ion-content{
   justify-content: center; /* Centra horizontalmente */
   align-items: center;     /* Centra verticalmente */
   height: 90vh; 
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Desvanecerse y moverse hacia abajo */
+.fade-out-down {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 1s ease-out, transform 1s ease-out; /* 1 segundo de duración */
+}
+
+/* Desvanecerse y moverse hacia arriba */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 1s ease-out, transform 1s ease-out; /* 1 segundo de duración */
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cienpc {
+  width: 100%;
+  height: 100%;
+}
+
+/* En global.scss o en el archivo SCSS del componente */
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 
