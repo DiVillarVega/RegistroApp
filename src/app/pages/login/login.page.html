@@ -28,12 +28,18 @@
                 <ion-button shape="block" size="small" (click)="ingresar()">Ingresar</ion-button>
               </ion-col>
             </ion-row>
+          </ion-grid>
+          
+          <!-- NO BORRAR!  -->
+           <!-- Esta parte del código redirige a la página "Correo" -->
             <ion-label>
               <br>
-              <a routerLink="">Crea tu cuenta gratis</a>
+              <a (click)="ingresarPaginaValidarCorreo()">Recuperar contraseña</a>
               <br><br>
             </ion-label>
-          </ion-grid>
+          <!-- NO BORRAR!  -->
+          
+
         </ion-card-content>
 
       </ion-card>

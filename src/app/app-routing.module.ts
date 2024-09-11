@@ -14,7 +14,15 @@ const routes: Routes = [
   {
     path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
+  },  {
+    path: 'correo',
+    loadChildren: () => import('./pages/correo/correo.module').then( m => m.CorreoPageModule)
   },
+  {
+    path: 'pregunta',
+    loadChildren: () => import('./pages/pregunta/pregunta.module').then( m => m.PreguntaPageModule)
+  },
+
 ];
 
 @NgModule({
