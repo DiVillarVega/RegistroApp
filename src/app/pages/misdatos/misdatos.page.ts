@@ -128,6 +128,7 @@ export class MisdatosPage implements OnInit, AfterViewInit {
 
   
   public cerrarSesion(): void {
+    this.router.navigate(['/login']);
   }
 
   createPageTurnAnimation() {
