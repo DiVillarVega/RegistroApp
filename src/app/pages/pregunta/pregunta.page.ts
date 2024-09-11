@@ -31,6 +31,10 @@ export class PreguntaPage implements OnInit {
   ngOnInit() {
   }
 
+
+// PARA FABIÁN !!!
+//Esto muestra los mensajes que deberían mostrar tus páginas en lugar de los alert
+
   public validarRespuestaSecreta(): void {
     if (this.usuario && this.usuario.respuestaSecreta === this.respuesta) {
       alert('La respuesta es correcta, tu clave es ' + this.usuario.password);
