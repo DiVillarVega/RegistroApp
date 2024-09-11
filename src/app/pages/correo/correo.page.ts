@@ -21,40 +21,11 @@ export class CorreoPage implements OnInit {
     }
   }
 
-  // public ingresarPaginaValidarRespuestaSecreta(): void {
-  //   const usuario = new Usuario('','','','','','','',
-  //     NivelEducacional.findNivelEducacionalById(1)!, undefined);
-  
-  //   const usuarioEncontrado =  usuario.buscarUsuarioPorCorreo2(this.correo);
-  //   if (!usuarioEncontrado) {
-  //     alert('El correo ingresado no está registrado en el sistema.');
-  //     return;
-  //   }
-  //   else {
-  //     const navigationExtras: NavigationExtras = {
-  //       state: {
-  //         usuario: usuarioEncontrado
-  //       }
-  //     };
-  //       this.router.navigate(['/pregunta'], navigationExtras);
-  //   }
-  // }
-
-  // public irAPregunta(): void {
-  //   const paginaCompleta = document.getElementById('pagina-completa');
-  
-  //   if (paginaCompleta) {
-  //     // Añade la clase 'fade-out-down' para desvanecer y mover el contenido hacia abajo
-  //     paginaCompleta.classList.add('fade-out-down');
-  
-  //     // Espera a que termine la transición antes de navegar a la siguiente página
-  //     setTimeout(() => {
-  //       this.router.navigate(['/pregunta']);
-  //     }, 1000); // Ajusta el tiempo para que coincida con la duración de la animación
-  //   }
-  // }
+  // PARA FABIAN
 
   public ingresarPaginaValidarRespuestaSecreta(): void {
+
+    // Validar que el correo ingresado esté registrado en el sistema
     const usuario = new Usuario('','','','','','','',
       NivelEducacional.findNivelEducacionalById(1)!, undefined);
   
@@ -63,14 +34,14 @@ export class CorreoPage implements OnInit {
     if (!usuarioEncontrado) {
       alert('El correo ingresado no está registrado en el sistema.');
       return;
-    }
-  
+    }  
     const navigationExtras: NavigationExtras = {
       state: {
         usuario: usuarioEncontrado
       }
     };
-  
+
+
     const paginaCompleta = document.getElementById('pagina-completa');
     
     if (paginaCompleta) {
