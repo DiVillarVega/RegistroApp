@@ -31,11 +31,11 @@ export class NivelEducacional {
     return niveles;
   }
   
-  public getEducacion(): string {
+  public getTextoNivelEducacional(): string {
     return this.id.toString() + ' - ' + this.nombre;
   }
 
-  public static buscarNivelEducacional(id: number): NivelEducacional | undefined {
+  public static findNivelEducacionalById(id: number): NivelEducacional | undefined {
     return NivelEducacional.getNivelesEducacionales().find(n => n.id === id);
   }
 

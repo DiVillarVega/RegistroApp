@@ -113,11 +113,6 @@ export class InicioPage implements OnInit, AfterViewInit {
       .play();
   }
 
-
-  public ingresarMisDatos(): void {
-    this.router.navigate(['/misdatos']);
-  }
-
   public mostrarDatosPersona(): void {
     // Si el usuario no ingresa la cuenta, se mostrará un error
     if (this.usuario.cuenta.trim() === '') {
@@ -132,7 +127,6 @@ export class InicioPage implements OnInit, AfterViewInit {
         + 'al menos debe tener un valor para el nombre o el apellido.');
       return;
     }
-    
 
     // Mostrar un mensaje emergente con los datos de la persona
     let mensaje = `

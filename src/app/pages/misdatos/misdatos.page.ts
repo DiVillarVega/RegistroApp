@@ -47,7 +47,7 @@ export class MisdatosPage implements OnInit, AfterViewInit {
           return;
         }
       }
-      this.router.navigate(['/misdatos']);
+      this.router.navigate(['/login']);
     });
 
   }

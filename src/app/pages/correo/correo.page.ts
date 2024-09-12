@@ -26,10 +26,9 @@ export class CorreoPage implements OnInit {
   public ingresarPaginaValidarRespuestaSecreta(): void {
 
     // Validar que el correo ingresado esté registrado en el sistema
-    const usuario = new Usuario('','','','','','','',
-      NivelEducacional.findNivelEducacionalById(1)!, undefined);
+    const usuario = new Usuario();
   
-    const usuarioEncontrado = usuario.buscarUsuarioPorCorreo2(this.correo);
+    const usuarioEncontrado = usuario.buscarUsuarioPorCorreo(this.correo);
   
     if (!usuarioEncontrado) {
       alert('El correo ingresado no está registrado en el sistema.');

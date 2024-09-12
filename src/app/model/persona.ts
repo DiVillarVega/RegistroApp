@@ -10,7 +10,7 @@ export class Persona {
   constructor() {
     this.nombre = '';
     this.apellido = '';
-    this.nivelEducacional = NivelEducacional.buscarNivelEducacional(1)!;
+    this.nivelEducacional = NivelEducacional.findNivelEducacionalById(1)!;
     this.fechaNacimiento = new Date();
   }
 

@@ -19,7 +19,7 @@ export class Usuario extends Persona {
     this.respuestaSecreta = '';
     this.nombre = '';
     this.apellido = '';
-    this.nivelEducacional = NivelEducacional.buscarNivelEducacional(1)!;
+    this.nivelEducacional = NivelEducacional.findNivelEducacionalById(1)!;
     this.fechaNacimiento = undefined;
   }
 
@@ -92,7 +92,7 @@ export class Usuario extends Persona {
       ${this.respuestaSecreta}
       ${this.nombre}
       ${this.apellido}
-      ${this.nivelEducacional.getEducacion()}
+      ${this.nivelEducacional.getTextoNivelEducacional()}
       ${this.getFechaNacimiento()}`;
   }
 
@@ -106,7 +106,7 @@ export class Usuario extends Persona {
         'gato', 
         'Ana', 
         'Torres', 
-        NivelEducacional.buscarNivelEducacional(6)!,
+        NivelEducacional.findNivelEducacionalById(6)!,
         new Date(2000, 0, 1)
       ),
       Usuario.getNewUsuario(
@@ -117,7 +117,7 @@ export class Usuario extends Persona {
         'panqueques',
         'Juan',
         'Pérez',
-        NivelEducacional.buscarNivelEducacional(5)!,
+        NivelEducacional.findNivelEducacionalById(5)!,
         new Date(2000, 1, 1)
       ),
       Usuario.getNewUsuario(
@@ -128,7 +128,7 @@ export class Usuario extends Persona {
         'moto',
         'Carla',
         'Mujica',
-        NivelEducacional.buscarNivelEducacional(6)!,
+        NivelEducacional.findNivelEducacionalById(6)!,
         new Date(2000, 2, 1)
       ),
     ]
