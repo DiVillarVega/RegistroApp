@@ -15,7 +15,8 @@ export class LoginPage implements OnInit {
   public usuario: Usuario;
 
   constructor(private router: Router, private toastController: ToastController) {
-    this.usuario = new Usuario();
+    this.usuario = new Usuario('', '', '', '', '', '', '', 
+      NivelEducacional.findNivelEducacionalById(1)!, undefined);
     this.usuario.cuenta = 'atorres';
     this.usuario.password = '1234';
   }
@@ -29,7 +30,7 @@ export class LoginPage implements OnInit {
 
       if(!this.validarUsuario(this.usuario)) return;
       
-      const usu: Usuario | undefined = Usuario.buscarUsuarioValido(
+      const usu: Usuario | undefined = this.usuario.buscarUsuarioValido(
         this.usuario.cuenta, this.usuario.password);
 
       if (usu) {

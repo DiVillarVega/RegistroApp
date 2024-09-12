@@ -13,7 +13,7 @@ export class NivelEducacional {
     this.nombre = nombre;
   }
 
-  public static getNivelEducacional(id: number, nombre: string): NivelEducacional {
+  public getNivelEducacional(id: number, nombre: string): NivelEducacional {
     const nivel = new NivelEducacional();
     nivel.setNivelEducacional(id, nombre);
     return nivel;
@@ -21,12 +21,12 @@ export class NivelEducacional {
 
   public static getNivelesEducacionales(): NivelEducacional[] {
     const niveles: NivelEducacional[] = [
-      NivelEducacional.getNivelEducacional(1, 'Básica Incompleta'),
-      NivelEducacional.getNivelEducacional(2, 'Básica Completa'),
-      NivelEducacional.getNivelEducacional(3, 'Media Incompleta'),
-      NivelEducacional.getNivelEducacional(4, 'Media Completa'),
-      NivelEducacional.getNivelEducacional(5, 'Superior Incompleta'),
-      NivelEducacional.getNivelEducacional(6, 'Superior Completa')
+      new NivelEducacional().getNivelEducacional(1, 'Básica Incompleta'),
+      new NivelEducacional().getNivelEducacional(2, 'Básica Completa'),
+      new NivelEducacional().getNivelEducacional(3, 'Media Incompleta'),
+      new NivelEducacional().getNivelEducacional(4, 'Media Completa'),
+      new NivelEducacional().getNivelEducacional(5, 'Superior Incompleta'),
+      new NivelEducacional().getNivelEducacional(6, 'Superior Completa')
     ];
     return niveles;
   }
