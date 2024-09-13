@@ -63,8 +63,11 @@ export class MisdatosPage implements OnInit, AfterViewInit {
           .addElement(this.itemTitulo.nativeElement)
           .iterations(Infinity)
           .duration(6000)
-          .fromTo('transform', 'traslate(0%)', 'translate(100%)')
-          .fromTo('opacity', 0.2, 1)
+          .keyframes([
+            { offset: 0, transform: 'translateX(-100%)', opacity: 0.4 },  // Fuera de la pantalla por la izquierda
+            { offset: 0.5, transform: 'translateX(0)', opacity: 1 },      // Completamente visible en el centro
+            { offset: 1, transform: 'translateX(100%)', opacity: 0.4 }    // Fuera de la pantalla por la derecha
+          ])
           .play();
       }
   }
