@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
 import { Usuario } from 'src/app/model/usuario';
 
@@ -12,7 +13,7 @@ export class CorreoPage implements OnInit {
 
   public correo: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private alertController: AlertController, private router: Router) { }
 
   ngOnInit() {
     const paginaCompleta = document.querySelector('.fade-in');
@@ -31,16 +32,33 @@ export class CorreoPage implements OnInit {
   
     const usuarioEncontrado = usuario.buscarUsuarioPorCorreo2(this.correo);
       //el alert debe redirigir al incorrecto
+
+      
     if (!usuarioEncontrado) {
-      this.router.navigate(['/incorrecto']);
-      return;
+      const emailCorrecto = this.correo.endsWith('@duocuc.cl'); // Verifica el formato
+
+      if (!emailCorrecto) {
+        // Muestra un mensaje en pantalla si el formato es incorrecto
+        let mensaje = `
+      <small>
+        ('El correo debe terminar en @duocuc.cl');
+        <br> 
+      </small>`;
+       this.presentAlert('Formato de Correo Incorrecto', mensaje);
+       this.router.navigate(['/login']);
+       return;
+        
+      } else {
+        // Si el formato es correcto pero el usuario no existe, redirige
+        this.router.navigate(['/incorrecto']);
+        return;
+      }
     }  
     const navigationExtras: NavigationExtras = {
       state: {
         usuario: usuarioEncontrado
       }
     };
-
 
     const paginaCompleta = document.getElementById('pagina-completa');
     
@@ -58,7 +76,15 @@ export class CorreoPage implements OnInit {
     }
   }
   
-  
+  public async presentAlert(titulo: string, mensaje: string) {
+    const alert = await this.alertController.create({
+      header: titulo,
+      message: mensaje,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }  
 
   //Ir al login sin animación
   // public irAlLogin(): void {
