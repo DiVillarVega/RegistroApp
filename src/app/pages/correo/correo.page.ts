@@ -30,9 +30,9 @@ export class CorreoPage implements OnInit {
       NivelEducacional.findNivelEducacionalById(1)!, undefined);
   
     const usuarioEncontrado = usuario.buscarUsuarioPorCorreo2(this.correo);
-  
+      //el alert debe redirigir al incorrecto
     if (!usuarioEncontrado) {
-      alert('El correo ingresado no está registrado en el sistema.');
+      this.router.navigate(['/incorrecto']);
       return;
     }  
     const navigationExtras: NavigationExtras = {

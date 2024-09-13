@@ -32,7 +32,15 @@ const routes: Routes = [
   {
     path: 'misdatos',
     loadChildren: () => import('./pages/misdatos/misdatos.module').then( m => m.MisdatosPageModule)
+  },  {
+    path: 'correcto',
+    loadChildren: () => import('./pages/correcto/correcto.module').then( m => m.CorrectoPageModule)
   },
+  {
+    path: 'incorrecto',
+    loadChildren: () => import('./pages/incorrecto/incorrecto.module').then( m => m.IncorrectoPageModule)
+  },
+
 
 ];
 

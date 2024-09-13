@@ -65,9 +65,9 @@ export class PreguntaPage implements OnInit {
 
   public validarRespuestaSecreta(): void {
     if (this.usuario && this.usuario.respuestaSecreta === this.respuesta) {
-      alert('La respuesta es correcta, tu clave es ' + this.usuario.password);
+      this.router.navigate(['/correcto']);
     } else {
-      alert('La respuesta es incorrecta');
+      this.router.navigate(['/incorrecto']);
     }
   }
 }
