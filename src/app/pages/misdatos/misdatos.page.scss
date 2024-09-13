@@ -103,3 +103,24 @@ html, body {
   overflow-y: hidden;
   overflow-x: hidden;
 }
+
+.logo-duoc {
+  width: 40%;
+}
+.azul-duoc{
+  --background: #010e2c;  
+}
+
+.text-with-background {
+  background-color: #fbb32f; /* Color del fondo */
+  color: black;               /* Color del texto */
+  padding: 1px;              /* Espaciado alrededor del texto */
+  border-radius: 20px;        /* Bordes redondeados (opcional) */
+  width: 250px;               /* Ancho específico */
+  
+}
+
+.text-with-background2 {
+  background-color: #fbb32f; /* Color del fondo */
+  color: black;  
+}
