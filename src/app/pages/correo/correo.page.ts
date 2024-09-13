@@ -46,7 +46,7 @@ export class CorreoPage implements OnInit {
         <br> 
       </small>`;
        this.presentAlert('Formato de Correo Incorrecto', mensaje);
-       this.router.navigate(['/login']);
+       this.router.navigate(['/incorrecto']);
        return;
         
       } else {
