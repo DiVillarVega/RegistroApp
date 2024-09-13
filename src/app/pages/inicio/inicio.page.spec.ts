@@ -2,14 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { InicioPage } from './inicio.page';
 
-describe('InicioPage', () => {
+describe('LoginPage', () => {
   let component: InicioPage;
   let fixture: ComponentFixture<InicioPage>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [InicioPage],
-      imports: [IonicModule.forRoot()]
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ InicioPage ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(InicioPage);

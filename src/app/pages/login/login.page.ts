@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
   public usuario: Usuario;
 
   constructor(private router: Router, private toastController: ToastController) {
-    this.usuario = new Usuario('', '', '', '', '', '', '', 
+    this.usuario = Usuario.getNewUsuario('', '', '', '', '', '', '', 
       NivelEducacional.findNivelEducacionalById(1)!, undefined);
     this.usuario.cuenta = 'atorres';
     this.usuario.password = '1234';
@@ -66,6 +66,10 @@ export class LoginPage implements OnInit {
 
   public ingresarPaginaValidarCorreo(): void {
     this.router.navigate(['/correo']);
+  }
+
+  navegar(pagina: string) {
+    this.usuario.navegarEnviandousuario(this.router, pagina);
   }
 
 }

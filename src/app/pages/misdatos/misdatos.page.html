@@ -10,7 +10,7 @@
 </ion-header>
 
   <ion-content #page [fullscreen]="true">
-    <ion-card class="content">
+    <ion-card class="content ion-text-center">
       <ion-title class="ion-padding-top">
         <ion-label class="ion-text-center">
           <h1> ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!</h1>
@@ -86,13 +86,7 @@
 
 
       <ion-grid>
-        <ion-row>
-          <ion-col col-3>
-            <ion-button shape="round" (click)="actualizarUsuario()" size="small">
-              Actualizar
-            </ion-button>
-          </ion-col>
-          
+        <ion-row >        
           <ion-col col-3>
             <ion-button shape="round" (click)="mostrarDatosPersona()" size="small">
               Ver Mis Datos
