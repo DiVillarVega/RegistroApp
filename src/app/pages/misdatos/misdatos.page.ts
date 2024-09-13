@@ -26,7 +26,7 @@ export class MisdatosPage implements OnInit, AfterViewInit {
   @ViewChild('itemContraseña',{ read: ElementRef }) itemContraseña!: ElementRef
   @ViewChild('itemRepetirContraseña',{ read: ElementRef }) itemRepetirContraseña!: ElementRef
   
-  public usuario: Usuario = new Usuario('', '', '', '', '', '', '', 
+  public usuario: Usuario = Usuario.getNewUsuario('', '', '', '', '', '', '', 
     NivelEducacional.findNivelEducacionalById(1)!, undefined);
 
   public listaNivelesEducacionales = NivelEducacional.getNivelesEducacionales();
@@ -39,16 +39,8 @@ export class MisdatosPage implements OnInit, AfterViewInit {
   ) 
   {
 
-    this.activatedRoute.queryParams.subscribe(params =>{
-      const nav = this.router.getCurrentNavigation();
-      if (nav) {
-        if (nav.extras.state){
-          this.usuario = nav.extras.state['usuario'];
-          return;
-        }
-      }
-      this.router.navigate(['/misdatos']);
-    });
+    this.usuario = new Usuario();
+    this.usuario.recibirUsuario(activatedRoute, router);
 
   }
 
@@ -106,26 +98,6 @@ export class MisdatosPage implements OnInit, AfterViewInit {
       .play();
   }
 
-  public actualizarUsuario(): void {
-    // Verificar si la cuenta ya existe
-    let usuarioExistente = Usuario.getListaUsuarios().find(u => u.cuenta === this.usuario.cuenta);
-  
-    if (usuarioExistente) {
-      // Actualizar los datos del usuario existente
-      usuarioExistente.nombre = this.usuario.nombre;
-      usuarioExistente.apellido = this.usuario.apellido;
-      usuarioExistente.correo = this.usuario.correo;
-      usuarioExistente.nivelEducacional = this.usuario.nivelEducacional;
-      usuarioExistente.fechaNacimiento = this.usuario.fechaNacimiento;
-  
-      // Mensaje de éxito
-      this.presentAlert('Actualización exitosa', 'Los datos del usuario han sido actualizados correctamente.');
-    } else {
-      // Si no existe, mostrar un mensaje de error
-      this.presentAlert('Error', 'El usuario no existe.');
-    }
-  }
-
   
   public cerrarSesion(): void {
     this.router.navigate(['/login']);
@@ -144,27 +116,26 @@ export class MisdatosPage implements OnInit, AfterViewInit {
   }
 
   public mostrarDatosPersona(): void {
-    // Si el usuario no ingresa la cuenta, se mostrará un error
     if (this.usuario.cuenta.trim() === '') {
       this.presentAlert('Datos personales', 'Para mostrar los datos de la persona, '
         + 'debe ingresar su cuenta.');
       return;
     }
 
-    // Si el usuario no ingresa al menos el nombre o el apellido, se mostrará un error
     if (this.usuario.nombre.trim() === '' && this.usuario.apellido === '') {
       this.presentAlert('Datos personales', 'Para mostrar los datos de la persona, '
         + 'al menos debe tener un valor para el nombre o el apellido.');
       return;
     }
 
-    // Mostrar un mensaje emergente con los datos de la persona
     let mensaje = `
       <small>
         <br>Cuenta: ${this.usuario.cuenta}
         <br>Usuario: ${this.usuario.correo}
         <br>Nombre: ${this.usuario.nombre}
         <br>Apellido: ${this.usuario.apellido}
+        <br>Pregunta secreta: ${this.usuario.preguntaSecreta}
+        <br>Respuesta secreta: ${this.usuario.respuestaSecreta}
         <br>Educación: ${this.usuario.getTextoNivelEducacional()}
         <br>Nacimiento: ${this.formatDateDDMMYYYY(this.usuario.fechaNacimiento)}
       </small>
@@ -189,4 +160,9 @@ export class MisdatosPage implements OnInit, AfterViewInit {
     const year = date.getFullYear(); // Obtener el año
     return `${day}/${month}/${year}`;
   }
+
+  navegar(pagina: string) {
+    this.usuario.navegarEnviandousuario(this.router, pagina);
+  }
+
 }

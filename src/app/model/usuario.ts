@@ -1,3 +1,4 @@
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NivelEducacional } from './nivel-educacional';
 import { Persona } from "./persona";
 
@@ -9,7 +10,21 @@ export class Usuario extends Persona {
   public preguntaSecreta: string;
   public respuestaSecreta: string;
 
-  constructor(
+  constructor()
+  {
+    super();
+    this.cuenta = '';
+    this.correo = '';
+    this.password = '';
+    this.preguntaSecreta = '';
+    this.respuestaSecreta = '';
+    this.nombre = '';
+    this.apellido = '';
+    this.nivelEducacional = NivelEducacional.findNivelEducacionalById(1)!;
+    this.fechaNacimiento = undefined;
+  }
+
+  public static getNewUsuario(
     cuenta: string,
     correo: string,
     password: string,
@@ -17,19 +32,20 @@ export class Usuario extends Persona {
     respuestaSecreta: string,
     nombre: string,
     apellido: string,
-    nivelEducacional: NivelEducacional,
-    fechaNacimiento: Date | undefined)
-  {
-    super();
-    this.cuenta = cuenta;
-    this.correo = correo;
-    this.password = password;
-    this.preguntaSecreta = preguntaSecreta;
-    this.respuestaSecreta = respuestaSecreta;
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.nivelEducacional = nivelEducacional;
-    this.fechaNacimiento = fechaNacimiento;
+    NivelEducacional: NivelEducacional,
+    fechaNacimiento: Date | undefined
+  ) {
+    let usuario = new Usuario();
+    usuario.cuenta = cuenta;
+    usuario.correo = correo;
+    usuario.password = password;
+    usuario.preguntaSecreta = preguntaSecreta;
+    usuario.respuestaSecreta = respuestaSecreta;
+    usuario.nombre = nombre;
+    usuario.apellido = apellido;
+    usuario.nivelEducacional = NivelEducacional;
+    usuario.fechaNacimiento = fechaNacimiento;
+    return usuario;
   }
 
   public buscarUsuarioValido(cuenta: string, password: string): Usuario | undefined {
@@ -74,6 +90,57 @@ export class Usuario extends Persona {
       || this.validarPassword();
   }
 
+  // Método recibirUsuario
+  recibirUsuario(activatedRoute: ActivatedRoute, router: Router) {
+    activatedRoute.queryParams.subscribe(() => {
+      const nav = router.getCurrentNavigation();
+      if (nav) {
+        if (nav.extras.state) {
+          const cuenta = nav.extras.state['cuenta'];
+          const password = nav.extras.state['password'];
+
+          // Buscar usuario válido basado en cuenta y password
+          const usu = Usuario.prototype.buscarUsuarioValido(cuenta, password);
+
+          if (usu) {
+            this.cuenta = usu.cuenta;
+            this.correo = usu.correo;
+            this.password = usu.password;
+            this.preguntaSecreta = usu.preguntaSecreta;
+            this.respuestaSecreta = usu.respuestaSecreta;
+            this.nombre = usu.nombre;
+            this.apellido = usu.apellido;
+            this.nivelEducacional = usu.nivelEducacional;
+            this.fechaNacimiento = usu.fechaNacimiento;
+          } else {
+            // Redirigir al login si no se encuentra un usuario válido
+            router.navigate(['/login']);
+          }
+          return;
+        }
+      }
+      // Redirigir al login si no hay parámetros de navegación
+      router.navigate(['/login']);
+    });
+  }
+
+  // Método navegarEnviandousuario
+  navegarEnviandousuario(router: Router, pagina: string) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        cuenta: this.cuenta,
+        password: this.password,
+      }
+    };
+
+    // Navegar solo si cuenta y password no están vacíos
+    if (this.cuenta !== '' && this.password !== '') {
+      router.navigate([pagina], navigationExtras);
+    } else {
+      router.navigate([pagina]); // Navegar sin enviar datos si faltan cuenta o password
+    }
+  }
+
   public getTextoNivelEducacional(): string {
     if (this.nivelEducacional) {
       return this.nivelEducacional.getTextoNivelEducacional();
@@ -103,7 +170,7 @@ export class Usuario extends Persona {
 
   public static getListaUsuarios(): Usuario[] {
     return [
-      new Usuario(
+      Usuario.getNewUsuario(
         'atorres', 
         'atorres@duocuc.cl', 
         '1234', 
@@ -114,7 +181,7 @@ export class Usuario extends Persona {
         NivelEducacional.findNivelEducacionalById(6)!,
         new Date(2000, 0, 1)
       ),
-      new Usuario(
+      Usuario.getNewUsuario(
         'jperez',
         'jperez@duocuc.cl',
         '5678',
@@ -125,7 +192,7 @@ export class Usuario extends Persona {
         NivelEducacional.findNivelEducacionalById(5)!,
         new Date(2000, 1, 1)
       ),
-      new Usuario(
+      Usuario.getNewUsuario(
         'cmujica',
         'cmujica@duocuc.cl',
         '0987',

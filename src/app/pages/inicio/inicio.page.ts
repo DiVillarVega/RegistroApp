@@ -21,7 +21,7 @@ export class InicioPage implements OnInit, AfterViewInit {
   @ViewChild('itemEducacion',{ read: ElementRef }) itemEducacion!: ElementRef
   @ViewChild('itemFechaNacimiento',{ read: ElementRef }) itemFechaNacimiento!: ElementRef
   
-  public usuario: Usuario = new Usuario('', '', '', '', '', '', '', 
+  public usuario: Usuario = Usuario.getNewUsuario('', '', '', '', '', '', '', 
     NivelEducacional.findNivelEducacionalById(1)!, undefined);
 
   public listaNivelesEducacionales = NivelEducacional.getNivelesEducacionales();
@@ -114,9 +114,10 @@ export class InicioPage implements OnInit, AfterViewInit {
   }
 
 
-  public ingresarMisDatos(): void {
-    this.router.navigate(['/misdatos']);
+  navegar(pagina: string) {
+    this.usuario.navegarEnviandousuario(this.router, pagina);
   }
+
 
   public mostrarDatosPersona(): void {
     // Si el usuario no ingresa la cuenta, se mostrará un error

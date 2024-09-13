@@ -20,13 +20,14 @@ export class CorreoPage implements OnInit {
       paginaCompleta.classList.add('fade-in');
     }
   }
+  
 
   // PARA FABIAN
 
   public ingresarPaginaValidarRespuestaSecreta(): void {
 
     // Validar que el correo ingresado esté registrado en el sistema
-    const usuario = new Usuario('','','','','','','',
+    const usuario = Usuario.getNewUsuario('','','','','','','',
       NivelEducacional.findNivelEducacionalById(1)!, undefined);
   
     const usuarioEncontrado = usuario.buscarUsuarioPorCorreo2(this.correo);
@@ -79,6 +80,4 @@ export class CorreoPage implements OnInit {
     }
   }
   
-  
-
 }
