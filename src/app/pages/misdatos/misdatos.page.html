@@ -109,3 +109,32 @@
     </div>
   </ion-card>
   </ion-content>
+
+  <div>
+
+  </div>
+  
+  
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+  
+      
+        <ion-icon name="pencil"></ion-icon>
+        Mis datos
+      
+  
+      <ion-tab-button tab="pencil" (click)="navegar('/inicio')">
+        <ion-icon name="play-circle"></ion-icon>
+        Inicio
+      </ion-tab-button>
+  
+      
+  
+      <ion-tab-button tab="library"
+      (click)="navegar('/miclase')"
+      >
+        <ion-icon name="library"></ion-icon>
+        Mi clase
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>

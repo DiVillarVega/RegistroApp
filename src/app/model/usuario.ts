@@ -114,13 +114,15 @@ export class Usuario extends Persona {
             this.fechaNacimiento = usu.fechaNacimiento;
           } else {
             // Redirigir al login si no se encuentra un usuario válido
-            router.navigate(['/login']);
+            //DESCOMENTAR ESTO:
+            //router.navigate(['/login']);
           }
           return;
         }
       }
       // Redirigir al login si no hay parámetros de navegación
-      router.navigate(['/login']);
+      //DESCOMENTAR ESTO:
+      //router.navigate(['/login']);
     });
   }
 
