@@ -4,6 +4,7 @@ import jsQR, { QRCode } from 'jsqr';
 import { Asistencia } from 'src/app/interfaces/asistencia';
 import { Usuario } from 'src/app/model/usuario';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
+import { AlertController, AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { NivelEducacional } from 'src/app/model/nivel-educacional';
 })
 
 export class InicioPage implements OnInit {
-
+  @ViewChild('titulo',{ read: ElementRef }) itemTitulo!: ElementRef
   @ViewChild('video') private video!: ElementRef;
   @ViewChild('canvas') private canvas!: ElementRef;
 
@@ -22,7 +23,10 @@ export class InicioPage implements OnInit {
   public datosQR: string = '';
 
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router)  {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private animationController: AnimationController) {
 
     this.usuario = new Usuario(
     );
@@ -31,6 +35,22 @@ export class InicioPage implements OnInit {
   }
   ngOnInit() {
     this.comenzarEscaneoQR();
+  }
+
+  ngAfterViewInit(): void {
+    if (this.itemTitulo) {
+      this.animationController
+        .create()
+        .addElement(this.itemTitulo.nativeElement)
+        .iterations(Infinity)
+        .duration(6000)
+        .keyframes([
+          { offset: 0, transform: 'translateX(-100%)', opacity: 0.4 },  // Fuera de la pantalla por la izquierda
+          { offset: 0.5, transform: 'translateX(0)', opacity: 1 },      // Completamente visible en el centro
+          { offset: 1, transform: 'translateX(100%)', opacity: 0.4 }    // Fuera de la pantalla por la derecha
+        ])
+        .play();
+    }
   }
 
   public async comenzarEscaneoQR() {
