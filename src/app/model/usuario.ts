@@ -1,6 +1,7 @@
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NivelEducacional } from './nivel-educacional';
 import { Persona } from "./persona";
+import { Asistencia } from 'src/app/interfaces/asistencia';
 
 export class Usuario extends Persona {
 
@@ -9,6 +10,7 @@ export class Usuario extends Persona {
   public password: string;
   public preguntaSecreta: string;
   public respuestaSecreta: string;
+  public asistencia?: Asistencia;
 
   constructor()
   {
@@ -113,9 +115,9 @@ export class Usuario extends Persona {
             this.nivelEducacional = usu.nivelEducacional;
             this.fechaNacimiento = usu.fechaNacimiento;
           } else {
-            // Redirigir al login si no se encuentra un usuario válido
+            //Redirigir al login si no se encuentra un usuario válido
             //DESCOMENTAR ESTO:
-            //router.navigate(['/login']);
+            router.navigate(['/login']);
           }
           return;
         }

@@ -62,18 +62,14 @@ export class InicioPage implements OnInit {
     context.drawImage(this.video.nativeElement, 0, 0, w, h);
     const img = context.getImageData(0, 0, w, h);
     let qrCode = jsQR(img.data, w, h, { inversionAttempts: 'dontInvert' });
-    if (qrCode) {
-      if (qrCode.data !== '') {
-        this.escaneando = false;
-        const navigationExtras: NavigationExtras = {
-          state: {
-            asistencia: JSON.parse(qrCode.data),
-            usuario: this.usuario // Asegúrate de incluir el usuario aquí
-          }
-        };
-        this.router.navigate(['/miclase'], navigationExtras);
-        return true;
-      }
+    if (qrCode && qrCode.data !== '') {
+      this.escaneando = false;
+
+      // Almacenar la asistencia en el usuario
+      this.usuario.asistencia = JSON.parse(qrCode.data);
+
+      this.usuario.navegarEnviandousuario(this.router, '/miclase');
+      return true;
     }
     return false;
   }

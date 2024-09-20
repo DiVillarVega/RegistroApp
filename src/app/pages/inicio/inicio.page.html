@@ -12,9 +12,13 @@
     
     <ion-title class="ion-padding-top">
       <ion-label class="ion-text-center">
-        <h1> ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!</h1>
-        <h4 *ngIf="!datosQR"> Registra tu asistencia a clases </h4>
-        <h4 *ngIf="datosQR"> Ya estas presente en tu clase </h4>
+        <h1>
+          ¡Bienvenido(a) 
+          {{ usuario.nombre }} 
+          {{ usuario.apellido }}!
+        </h1>
+        <h4 *ngIf="!asistencia"> Registra tu asistencia a clases </h4>
+        <h4 *ngIf="asistencia"> Ya estas presente en tu clase </h4>
 
       </ion-label>
     </ion-title>
@@ -42,9 +46,10 @@
       Mis datos
     </ion-tab-button>
 
-    
+    <ion-tab-button tab="play-circle">
       <ion-icon name="play-circle"></ion-icon>
       Inicio
+    </ion-tab-button>
     
 
     

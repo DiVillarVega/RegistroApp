@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
         };
         setTimeout(() => {
           this.mostrarMensaje('¡Bienvenido(a)!');
-          this.router.navigate(['/inicio'], navigationExtras); // Navegamos hacia el Inicio y enviamos la información extra
+          this.usuario.navegarEnviandousuario(this.router, '/inicio'); // Navegamos hacia el Inicio y enviamos la información extra
         }, 300);
       }
     }
