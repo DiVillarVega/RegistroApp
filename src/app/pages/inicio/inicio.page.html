@@ -20,8 +20,8 @@
           {{ usuario.nombre }} 
           {{ usuario.apellido }}!
         </h1>
-        <h4 *ngIf="!asistencia"> Registra tu asistencia a clases </h4>
-        <h4 *ngIf="asistencia"> Ya estas presente en tu clase </h4>
+        <h4 *ngIf="!usuario.asistencia"> Registra tu asistencia a clases </h4>
+        <h4 *ngIf="usuario.asistencia"> Ya estas presente en tu clase </h4>
 
       </ion-label>
     </ion-title>
@@ -44,12 +44,12 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
 
-    <ion-tab-button tab="pencil" (click)="navegar('/misdatos')">
+    <ion-tab-button  (click)="navegar('/misdatos')">
       <ion-icon name="pencil"></ion-icon>
       Mis datos
     </ion-tab-button>
 
-    <ion-tab-button tab="play-circle">
+    <ion-tab-button >
       <ion-icon name="play-circle"></ion-icon>
       Inicio
     </ion-tab-button>
@@ -57,9 +57,7 @@
 
     
 
-    <ion-tab-button tab="library"
-    (click)="navegar('/miclase')"
-    >
+    <ion-tab-button (click)="navegar('/miclase')">
       <ion-icon name="library"></ion-icon>
       Mi clase
     </ion-tab-button>

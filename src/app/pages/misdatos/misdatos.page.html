@@ -85,18 +85,6 @@
       </ion-item>
 
 
-      <ion-grid>
-        <ion-row >        
-          <ion-col col-3>
-            <ion-button shape="round" (click)="mostrarDatosPersona()" size="small">
-              Ver Mis Datos
-            </ion-button>
-          </ion-col>
-
-        </ion-row>
-      </ion-grid>
-
-
       <div class="ion-text-center">
         <ion-label>
           <br>
@@ -119,20 +107,20 @@
     <ion-tab-bar slot="bottom">
   
       
-      <ion-tab-button tab="pencil">
+      <ion-tab-button >
         <ion-icon name="pencil"></ion-icon>
         Mis datos
       </ion-tab-button>
       
   
-      <ion-tab-button tab="play-circle" (click)="navegar('/inicio')">
+      <ion-tab-button  (click)="navegar('/inicio')">
         <ion-icon name="play-circle"></ion-icon>
         Inicio
       </ion-tab-button>
   
       
   
-      <ion-tab-button tab="library"
+      <ion-tab-button 
       (click)="navegar('/miclase')"
       >
         <ion-icon name="library"></ion-icon>

@@ -1,45 +1,51 @@
 <ion-header>
   <ion-toolbar class="azul-duoc">  
     <div class="ion-text-center">
-      <img alt="DUOC" src="../../../assets/img/logoduocazul.png"  class="logo-duoc" />
+      <img alt="DUOC" src="../../../assets/img/logoduocazul.png" class="logo-duoc" />
     </div>
-    <ion-title #titulo class="ion-text-center" 
-    style="font-size: 18px; color: white;">
-    Sistema de Asistencia Duoc</ion-title>
+    <ion-title #titulo class="ion-text-center" style="font-size: 18px; color: white;">
+      Sistema de Asistencia Duoc
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">miclase</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card *ngIf="asistencia; else noAsistencia">
+    <ion-card-header>
+      <ion-card-title>{{ asistencia.nombreAsignatura }}</ion-card-title>
+      <ion-card-subtitle>{{ asistencia.nombreProfesor }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Día:</strong> {{ asistencia.dia }}</p>
+      <p><strong>Hora Inicio:</strong> {{ asistencia.horaInicio }}</p>
+      <p><strong>Hora Fin:</strong> {{ asistencia.horaFin }}</p>
+      <p><strong>Bloque Inicio:</strong> {{ asistencia.bloqueInicio }}</p>
+      <p><strong>Bloque Término:</strong> {{ asistencia.bloqueTermino }}</p>
+      <p><strong>Sección:</strong> {{ asistencia.seccion }}</p>
+      <p><strong>Sede:</strong> {{ asistencia.sede }}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
-<div>
 
-</div>
-
+<ng-template #noAsistencia>
+  <p>No hay datos de asistencia disponibles.</p>
+</ng-template>
 
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-
-    <ion-tab-button tab="pencil" (click)="navegar('/misdatos')">
+    <ion-tab-button (click)="navegar('/misdatos')">
       <ion-icon name="pencil"></ion-icon>
       Mis datos
     </ion-tab-button>
-    
-
-    <ion-tab-button tab="pencil" (click)="navegar('/inicio')">
+    <ion-tab-button  (click)="navegar('/inicio')">
       <ion-icon name="play-circle"></ion-icon>
       Inicio
     </ion-tab-button>
-
-    <ion-tab-button tab="library">
+    <ion-tab-button >
       <ion-icon name="library"></ion-icon>
       Mi clase
     </ion-tab-button>
-
   </ion-tab-bar>
 </ion-tabs>

@@ -93,18 +93,21 @@ export class Usuario extends Persona {
   }
 
   // Método recibirUsuario
-  recibirUsuario(activatedRoute: ActivatedRoute, router: Router) {
+  public recibirUsuario(activatedRoute: ActivatedRoute, router: Router) {
     activatedRoute.queryParams.subscribe(() => {
       const nav = router.getCurrentNavigation();
       if (nav) {
         if (nav.extras.state) {
           const cuenta = nav.extras.state['cuenta'];
           const password = nav.extras.state['password'];
-
+          const asistencia = nav.extras.state['asistencia'];
+  
           // Buscar usuario válido basado en cuenta y password
           const usu = Usuario.prototype.buscarUsuarioValido(cuenta, password);
-
+  
           if (usu) {
+
+            this.asistencia = asistencia;
             this.cuenta = usu.cuenta;
             this.correo = usu.correo;
             this.password = usu.password;
@@ -115,16 +118,12 @@ export class Usuario extends Persona {
             this.nivelEducacional = usu.nivelEducacional;
             this.fechaNacimiento = usu.fechaNacimiento;
           } else {
-            //Redirigir al login si no se encuentra un usuario válido
-            //DESCOMENTAR ESTO:
             router.navigate(['/login']);
           }
           return;
         }
       }
-      // Redirigir al login si no hay parámetros de navegación
-      //DESCOMENTAR ESTO:
-      //router.navigate(['/login']);
+      router.navigate(['/login']);
     });
   }
 
@@ -134,6 +133,7 @@ export class Usuario extends Persona {
       state: {
         cuenta: this.cuenta,
         password: this.password,
+        asistencia: this.asistencia
       }
     };
 

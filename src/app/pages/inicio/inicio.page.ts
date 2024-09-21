@@ -34,7 +34,11 @@ export class InicioPage implements OnInit {
 
   }
   ngOnInit() {
-    this.comenzarEscaneoQR();
+    if (!this.usuario.asistencia) {
+      this.comenzarEscaneoQR();
+    } else {
+      console.log("Asistencia ya almacenada:", this.usuario.asistencia);
+    }
   }
 
   ngAfterViewInit(): void {
@@ -82,15 +86,18 @@ export class InicioPage implements OnInit {
     context.drawImage(this.video.nativeElement, 0, 0, w, h);
     const img = context.getImageData(0, 0, w, h);
     let qrCode = jsQR(img.data, w, h, { inversionAttempts: 'dontInvert' });
+    
     if (qrCode && qrCode.data !== '') {
+      console.log("QR Data:", qrCode.data);
+      
       this.escaneando = false;
-
-      // Almacenar la asistencia en el usuario
-      this.usuario.asistencia = JSON.parse(qrCode.data);
-
+      this.usuario.asistencia = JSON.parse(qrCode.data);  
+      console.log("Asistencia:", this.usuario.asistencia);  
+      
       this.usuario.navegarEnviandousuario(this.router, '/miclase');
       return true;
     }
+    
     return false;
   }
   
