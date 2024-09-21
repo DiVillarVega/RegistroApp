@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
 import { Usuario } from 'src/app/model/usuario';
 
@@ -16,7 +16,17 @@ export class CorrectoPage implements OnInit {
   @ViewChild('page',{ read: ElementRef }) page!: ElementRef
 
 
-  constructor(private router: Router) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const navigation = this.router.getCurrentNavigation();
+      if (navigation?.extras?.state) {
+        this.usuario = navigation.extras.state['usuario'];
+      }
+    });
+  }
   
   
 
@@ -47,4 +57,6 @@ export class CorrectoPage implements OnInit {
       }, 800); // Ajusta el tiempo para que coincida con la duración de la animación
     }
   }
+
+  
 }

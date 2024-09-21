@@ -1,6 +1,6 @@
 import { Usuario } from 'src/app/model/usuario';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NavigationState } from 'src/app/model/navigation-state';
 
 @Component({
@@ -63,11 +63,16 @@ export class PreguntaPage implements OnInit {
 // PARA FABIÁN !!!
 //Esto muestra los mensajes que deberían mostrar tus páginas en lugar de los alert
 
-  public validarRespuestaSecreta(): void {
-    if (this.usuario && this.usuario.respuestaSecreta === this.respuesta) {
-      this.router.navigate(['/correcto']);
-    } else {
-      this.router.navigate(['/incorrecto']);
-    }
+public validarRespuestaSecreta(): void {
+  if (this.usuario && this.usuario.respuestaSecreta === this.respuesta) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario
+      }
+    };
+    this.router.navigate(['/correcto'], navigationExtras);
+  } else {
+    this.router.navigate(['/incorrecto']);
   }
+}
 }
