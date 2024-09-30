@@ -12,25 +12,47 @@
 <ion-content [fullscreen]="true">
   <ion-card *ngIf="asistencia; else noAsistencia">
     <ion-card-header>
-      <ion-card-title>{{ asistencia.nombreAsignatura }}</ion-card-title>
-      <ion-card-subtitle>{{ asistencia.nombreProfesor }}</ion-card-subtitle>
+      <h1 class="titulo_datos">DATOS DE LA ASIGNATURA</h1>
     </ion-card-header>
 
     <ion-card-content>
-      <p><strong>Día:</strong> {{ asistencia.dia }}</p>
-      <p><strong>Hora Inicio:</strong> {{ asistencia.horaInicio }}</p>
-      <p><strong>Hora Fin:</strong> {{ asistencia.horaFin }}</p>
-      <p><strong>Bloque Inicio:</strong> {{ asistencia.bloqueInicio }}</p>
-      <p><strong>Bloque Término:</strong> {{ asistencia.bloqueTermino }}</p>
-      <p><strong>Sección:</strong> {{ asistencia.seccion }}</p>
-      <p><strong>Sede:</strong> {{ asistencia.sede }}</p>
+      <div class="container">
+        <div class="left">
+          <p><strong>Sede:</strong></p>
+          <p><strong>Sigla:</strong></p>
+          <p><strong>Sección:</strong></p>
+          <p><strong>Nombre asignatura:</strong></p>
+          <p><strong>Nombre profesor:</strong></p>
+          <p><strong>Día:</strong></p>
+          <p><strong>Bloque Inicio:</strong></p>
+          <p><strong>Bloque Término:</strong></p>
+          <p><strong>Hora Inicio:</strong></p>
+          <p><strong>Hora Fin:</strong></p>
+        </div>
+        <div class="right">
+          <p>{{ asistencia.sede }}</p>
+          <p>{{ asistencia.idAsignatura }}</p>
+          <p>{{ asistencia.seccion }}</p>
+          <p>{{ asistencia.nombreAsignatura }}</p>
+          <p>{{ asistencia.nombreProfesor }}</p>
+          <p>{{ asistencia.dia }}</p>
+          <p>{{ asistencia.bloqueInicio }}</p>
+          <p>{{ asistencia.bloqueTermino }}</p>
+          <p>{{ asistencia.horaInicio }}</p>
+          <p>{{ asistencia.horaFin }}</p>
+        </div>
+      </div>
+      
+      
+      
+      
     </ion-card-content>
   </ion-card>
 </ion-content>
 
 
 <ng-template #noAsistencia>
-  <p>No hay datos de asistencia disponibles.</p>
+  <h1 class="ion-padding-top ion-text-center titulo_datos">No hay datos de asistencia disponibles.</h1>
 </ng-template>
 
 <ion-tabs>

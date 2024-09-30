@@ -124,3 +124,30 @@ html, body {
   background-color: #fbb32f; /* Color del fondo */
   color: black;  
 }
+
+.titulo_datos{
+  font-size: 20px;
+  font-weight: bold;
+  color: #010e2c;
+  text-align: center;
+  font-size: 30px;
+}
+
+.container {
+  width: 100%; /* Para que ambos divs se adapten al ancho */
+}
+.left, .right {
+  display: inline-block;
+  vertical-align: top; /* Alinea ambos divs al principio de la línea */
+  margin: 0;
+  padding: 0;
+  color: #010e2c;
+  
+}
+.left {
+  width: 40%; /* Ajusta el tamaño del div izquierdo */
+}
+.right {
+  width: 60%; /* Ajusta el tamaño del div derecho */
+  
+}
