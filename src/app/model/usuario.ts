@@ -11,6 +11,7 @@ export class Usuario extends Persona {
   public preguntaSecreta: string;
   public respuestaSecreta: string;
   public asistencia?: Asistencia;
+  public listaUsuarios: Usuario[];
 
   constructor()
   {
@@ -24,6 +25,67 @@ export class Usuario extends Persona {
     this.apellido = '';
     this.nivelEducacional = NivelEducacional.findNivelEducacionalById(1)!;
     this.fechaNacimiento = undefined;
+    this.asistencia = undefined;
+    this.listaUsuarios = [];
+  }
+
+public asistenciaVacia(): Asistencia {
+    return {  
+      bloqueInicio: 0,
+      bloqueTermino: 0,
+      dia: '',
+      horaFin: '',
+      horaInicio: '',
+      idAsignatura: '',
+      nombreAsignatura: '',
+      nombreProfesor: '',
+      seccion: '',
+      sede: ''
+    };
+  }
+
+  crearListausuariosValidos() {
+    if (this.listaUsuarios.length === 0) {
+      this.listaUsuarios.push(
+        Usuario.getNewUsuario(
+          'atorres', 
+          'atorres@duocuc.cl', 
+          '1234', 
+          '¿Cuál es tu animal favorito?', 
+          'gato', 
+          'Ana', 
+          'Torres', 
+          NivelEducacional.findNivelEducacionalById(6)!,
+          new Date(2000, 0, 1)
+        )
+      );
+      this.listaUsuarios.push(
+        Usuario.getNewUsuario(
+          'jperez',
+          'jperez@duocuc.cl',
+          '5678',
+          '¿Cuál es tu postre favorito?',
+          'panqueques',
+          'Juan',
+          'Pérez',
+          NivelEducacional.findNivelEducacionalById(5)!,
+          new Date(2000, 1, 1)
+        )
+      );
+      this.listaUsuarios.push(
+        Usuario.getNewUsuario(
+          'cmujica',
+          'cmujica@duocuc.cl',
+          '0987',
+          '¿Cuál es tu vehículo favorito?',
+          'moto',
+          'Carla',
+          'Mujica',
+          NivelEducacional.findNivelEducacionalById(6)!,
+          new Date(2000, 2, 1)
+        )
+      );
+    }
   }
 
   public static getNewUsuario(
@@ -127,6 +189,32 @@ export class Usuario extends Persona {
     });
   }
 
+  recibirUsuarioDatos(activatedRoute: ActivatedRoute, router: Router) {
+    if (this.listaUsuarios.length === 0) this.crearListausuariosValidos();
+    activatedRoute.queryParams.subscribe(() =>{
+      const nav = router.getCurrentNavigation();
+      if (nav) {
+        if (nav.extras.state){
+          this.listaUsuarios = nav.extras.state['listaUsuarios'];
+          const encontrado = this.buscarUsuarioPorCorreo(nav.extras.state['cuenta']);
+
+          this.cuenta = encontrado!.cuenta;
+          this.password = encontrado!.password;
+          this.preguntaSecreta = encontrado!.preguntaSecreta;
+          this.respuestaSecreta = encontrado!.respuestaSecreta;
+          this.nombre = encontrado!.nombre;
+          this.apellido = encontrado!.apellido;
+          this.nivelEducacional = encontrado!.nivelEducacional;
+          this.fechaNacimiento = encontrado!.fechaNacimiento;
+          this.asistencia = nav.extras.state['asistencia'];
+          return;
+        }
+      }
+      router.navigate(['/ingreso'])
+      }
+    )
+  }
+
   // Método navegarEnviandousuario
   navegarEnviandousuario(router: Router, pagina: string) {
     const navigationExtras: NavigationExtras = {
@@ -171,6 +259,37 @@ export class Usuario extends Persona {
     const year = date.getFullYear(); // Obtener el año
     return `${day}/${month}/${year}`;
   }
+
+  navegarEnviandoUsuario(router: Router, pagina: string) {
+    if (this.cuenta.trim() !== '' && this.password.trim() !== '') {
+      const navigationExtras: NavigationExtras = {
+        state: {
+          cuenta: this.cuenta,
+          listaUsuarios: this.listaUsuarios,
+          asistencia: this.asistencia
+        }
+      }
+      router.navigate([pagina], navigationExtras)
+    }else{
+      router.navigate(['/ingreso'])
+    }
+  }
+
+  actualizarUsuario() {
+    const usu = this.buscarUsuarioPorCorreo(this.cuenta);
+    if (usu) {
+      usu.correo = this.correo;
+      usu.password = this.password;
+      usu.preguntaSecreta = this.preguntaSecreta;
+      usu.respuestaSecreta = this.respuestaSecreta;
+      usu.nombre = this.nombre;
+      usu.apellido = this.apellido;
+      usu.nivelEducacional = this.nivelEducacional;
+      usu.fechaNacimiento = this.fechaNacimiento;
+      usu.asistencia = this.asistencia;
+    }
+  }
+
 
   public static getListaUsuarios(): Usuario[] {
     return [

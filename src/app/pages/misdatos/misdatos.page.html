@@ -87,6 +87,8 @@
 
       <div class="ion-text-center">
         <ion-label>
+
+          <ion-button (click)="this.actualizarUsuario() " color="success">Guardar cambios</ion-button>
           <br>
           
           <u><a (click)="cerrarSesion()">Cerrar sesión</a></u>
@@ -103,7 +105,7 @@
   </div>
   
   
-  <ion-tabs>
+  <ion-footer>
     <ion-tab-bar slot="bottom">
   
       
@@ -127,4 +129,4 @@
         Mi clase
       </ion-tab-button>
     </ion-tab-bar>
-  </ion-tabs>
+  </ion-footer>
